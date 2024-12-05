@@ -1,0 +1,43 @@
+security:
+    # Encodage des mots de passe
+    password_hashers:
+        Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
+
+    # Liste des utilisateurs et firewalls
+    providers:
+        app_user_provider:
+            entity:
+                class: App\Entity\User
+                property: email
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        login:
+            pattern: ^/login
+            stateless: true
+            form_login:
+                login_path: app_login
+                check_path: app_login
+                default_target_path: member
+                enable_csrf: true
+            logout:
+                path: app_logout
+                # where to redirect after logout
+                # target: app_any_route
+
+        main:
+            lazy: true
+            provider: app_user_provider
+            custom_authenticators:
+                - App\Security\AppAuthenticator
+
+            # Redirection vers la page de login si non authentifié
+            logout:
+                path: logout
+                target: login
+
+    access_control:
+        - { path: ^/member, roles: ROLE_USER }
