@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+    <!-- Header-->
+    <header class="bg-primary bg-gradient text-white">
+        <div class="container px-4 text-center">
+            <h1 class="fw-bolder">Exemple de projet Symfony</h1>
+            <p class="lead">Catalogue en ligne</p>
+            <a class="btn btn-lg btn-light" href="{{ path('app_book_index') }}">Parcourez le catalogue</a>
+        </div>
+    </header>
+    <!-- About section-->
+    <section id="about">
+        <div class="container px-4">
+            <div class="row gx-4 justify-content-center">
+                <div class="col-lg-8">
+                    <h2>Qu'est-ce que c'est?</h2>
+                    <p class="lead">C'est un exemple d'utilisation et de bonne pratique d'un projet symfony.</p>
+                    <p>Fonctionnalités et outils :</p>
+                    <ul>
+                        <li>Docker</li>
+                        <li>Bdd MySql</li>
+                        <li>CRUD des elements</li>
+                        <li>Système de connexion avec définitions des droits d'accès</li>
+                        <li>Utilisation de l'Event Dispatcher pour tracer la dernière connexion des utilisateurs en base de données.</li>
+                        <li>Utilisation des fixtures pour travailler avec des données de test.</li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
