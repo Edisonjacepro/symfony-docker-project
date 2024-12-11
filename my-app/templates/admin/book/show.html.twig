@@ -47,5 +47,11 @@
     {% endif %}
     <a href="{{ path('app_admin_book_index') }}" class="btn btn-primary">Retour</a>
     <a href="{{ path('app_admin_book_edit', {id: book.id}) }}" class="btn btn-warning">Éditer</a>
+    {# Bouton de suppression pour les administrateurs #}
+    {% if is_granted('ROLE_ADMIN') %}
+        <form action="{{ path('app_admin_book_delete', {id: book.id}) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce livre ?');" style="display: inline;">
+            <button type="submit" class="btn btn-danger">Supprimer</button>
+        </form>
+    {% endif %}
 </section>
 {% endblock %}
